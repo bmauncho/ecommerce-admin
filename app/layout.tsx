@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ModalProvider } from "@/providers/modal-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import "./globals.css";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -25,11 +24,11 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html
-        lang="en"
-        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      >
-        <body className="min-h-full flex flex-col">{children}</body>
+      <html lang="en" className={`${poppins.variable} h-full antialiased`}>
+        <body className="min-h-full flex flex-col">
+          <ModalProvider />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );
