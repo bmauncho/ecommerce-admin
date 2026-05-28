@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/providers/modal-provider";
+import { ToastProvider } from "@/providers/toast-provider";
 
 import "./globals.css";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className={`${poppins.variable} h-full antialiased`}>
         <body className="min-h-full flex flex-col">
+          <ToastProvider />
           <ModalProvider />
           {children}
         </body>
