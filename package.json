@@ -11,6 +11,8 @@
   "dependencies": {
     "@clerk/nextjs": "^7.4.1",
     "@hookform/resolvers": "^5.4.0",
+    "@prisma/client": "^7.8.0",
+    "axios": "^1.16.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.16.0",
@@ -32,6 +34,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "prisma": "^7.8.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
