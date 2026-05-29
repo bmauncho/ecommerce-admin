@@ -3,17 +3,17 @@
 import { useEffect } from "react";
 import { useStoreModal } from "@/hooks/use-store-modal";
 
-const RootPage = () => {
+const SetUpPage = () => {
   const onOpen = useStoreModal((state) => state.onOpen);
   const isOpen = useStoreModal((state) => state.isOpen);
 
-  useEffect(()=>{
-    if(!isOpen){
+  useEffect(() => {
+    if (!isOpen) {
       onOpen();
     }
   }, [isOpen, onOpen]);
 
-  return <div className="p-4">The Root Page</div>;
+  return null;
 };
 
-export default RootPage;
+export default SetUpPage;
