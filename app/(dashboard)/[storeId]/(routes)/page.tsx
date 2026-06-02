@@ -5,9 +5,10 @@ interface DashboardPageProps {
 }
 
 const DashboardPage = async ({ params }: DashboardPageProps) => {
+  const { storeId } = await params;
   const store = await prismadb.store.findFirst({
     where: {
-      id: params.storeId,
+      id: storeId,
     },
   });
 
