@@ -22,3 +22,8 @@ export * from './enums';
  * 
  */
 export type Store = Prisma.StoreModel
+/**
+ * Model Billboard
+ * 
+ */
+export type Billboard = Prisma.BillboardModel

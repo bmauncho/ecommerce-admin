@@ -384,7 +384,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Store: 'Store'
+  Store: 'Store',
+  Billboard: 'Billboard'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +401,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "store"
+    modelProps: "store" | "billboard"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -478,6 +479,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Billboard: {
+      payload: Prisma.$BillboardPayload<ExtArgs>
+      fields: Prisma.BillboardFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BillboardFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BillboardFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload>
+        }
+        findFirst: {
+          args: Prisma.BillboardFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BillboardFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload>
+        }
+        findMany: {
+          args: Prisma.BillboardFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload>[]
+        }
+        create: {
+          args: Prisma.BillboardCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload>
+        }
+        createMany: {
+          args: Prisma.BillboardCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BillboardCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload>[]
+        }
+        delete: {
+          args: Prisma.BillboardDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload>
+        }
+        update: {
+          args: Prisma.BillboardUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload>
+        }
+        deleteMany: {
+          args: Prisma.BillboardDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BillboardUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BillboardUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload>[]
+        }
+        upsert: {
+          args: Prisma.BillboardUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BillboardPayload>
+        }
+        aggregate: {
+          args: Prisma.BillboardAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBillboard>
+        }
+        groupBy: {
+          args: Prisma.BillboardGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BillboardGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BillboardCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BillboardCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -526,6 +601,18 @@ export const StoreScalarFieldEnum = {
 } as const
 
 export type StoreScalarFieldEnum = (typeof StoreScalarFieldEnum)[keyof typeof StoreScalarFieldEnum]
+
+
+export const BillboardScalarFieldEnum = {
+  id: 'id',
+  storeId: 'storeId',
+  label: 'label',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BillboardScalarFieldEnum = (typeof BillboardScalarFieldEnum)[keyof typeof BillboardScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -702,6 +789,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   store?: Prisma.StoreOmit
+  billboard?: Prisma.BillboardOmit
 }
 
 /* Types for Logging */
