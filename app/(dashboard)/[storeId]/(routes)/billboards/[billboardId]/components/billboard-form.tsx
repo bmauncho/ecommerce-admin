@@ -7,7 +7,6 @@ import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { Store } from "@/lib/generated/prisma/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
@@ -20,8 +19,6 @@ import {
 import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { ApiAlert } from "@/components/ui/api-alert";
-import { useOrigin } from "@/hooks/use-origin";
 import { Billboard } from "@/lib/generated/prismadb/client";
 import ImageUpload from "@/components/ui/image-upload";
 
@@ -41,7 +38,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 }) => {
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -76,7 +72,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
       router.refresh();
 
       router.push(`/${params.storeId}/billboards`);
-      
+
       toast.success(toastMessage);
     } catch (error) {
       toast.error("Something went wrong.");
@@ -95,7 +91,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 
       router.refresh();
 
-      router.push("/");
+      router.push(`/${params.storeId}/billboards`);
 
       toast.success("Billboard deleted.");
     } catch (error) {
@@ -181,7 +177,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
           </Button>
         </form>
       </div>
-      <Separator />
     </>
   );
 };
