@@ -51,3 +51,8 @@ export type Store = Prisma.StoreModel
  * 
  */
 export type Billboard = Prisma.BillboardModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
