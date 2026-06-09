@@ -32,3 +32,8 @@ export type Billboard = Prisma.BillboardModel
  * 
  */
 export type Category = Prisma.CategoryModel
+/**
+ * Model Size
+ * 
+ */
+export type Size = Prisma.SizeModel

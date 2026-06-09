@@ -16,7 +16,7 @@ export function MainNav({
       label: "Overview",
       active: pathname === `/${params.storeId}`,
     },
-     {
+    {
       href: `/${params.storeId}/billboards`,
       label: "Billboards",
       active: pathname === `/${params.storeId}/billboards`,
@@ -25,6 +25,11 @@ export function MainNav({
       href: `/${params.storeId}/categories`,
       label: "Categories",
       active: pathname === `/${params.storeId}/categories`,
+    },
+    {
+      href: `/${params.storeId}/sizes`,
+      label: "Sizes",
+      active: pathname === `/${params.storeId}/sizes`,
     },
     {
       href: `/${params.storeId}/settings`,
@@ -47,7 +52,7 @@ export function MainNav({
               "text-sm font-medium transition-colors hover:text-primary",
               route.active
                 ? "text-black dark:text-white"
-                : "text-muted-foreground",
+                : "text-muted-foreground"
             )}
           >
             {route.label}

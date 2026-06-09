@@ -386,7 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Store: 'Store',
   Billboard: 'Billboard',
-  Category: 'Category'
+  Category: 'Category',
+  Size: 'Size'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "store" | "billboard" | "category"
+    modelProps: "store" | "billboard" | "category" | "size"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -628,6 +629,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Size: {
+      payload: Prisma.$SizePayload<ExtArgs>
+      fields: Prisma.SizeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SizeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SizeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>
+        }
+        findFirst: {
+          args: Prisma.SizeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SizeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>
+        }
+        findMany: {
+          args: Prisma.SizeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>[]
+        }
+        create: {
+          args: Prisma.SizeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>
+        }
+        createMany: {
+          args: Prisma.SizeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SizeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>[]
+        }
+        delete: {
+          args: Prisma.SizeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>
+        }
+        update: {
+          args: Prisma.SizeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>
+        }
+        deleteMany: {
+          args: Prisma.SizeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SizeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SizeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>[]
+        }
+        upsert: {
+          args: Prisma.SizeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>
+        }
+        aggregate: {
+          args: Prisma.SizeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSize>
+        }
+        groupBy: {
+          args: Prisma.SizeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SizeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SizeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SizeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -700,6 +775,18 @@ export const CategoryScalarFieldEnum = {
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const SizeScalarFieldEnum = {
+  id: 'id',
+  storeId: 'storeId',
+  name: 'name',
+  value: 'value',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SizeScalarFieldEnum = (typeof SizeScalarFieldEnum)[keyof typeof SizeScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -878,6 +965,7 @@ export type GlobalOmitConfig = {
   store?: Prisma.StoreOmit
   billboard?: Prisma.BillboardOmit
   category?: Prisma.CategoryOmit
+  size?: Prisma.SizeOmit
 }
 
 /* Types for Logging */

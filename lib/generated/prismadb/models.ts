@@ -11,4 +11,5 @@
 export type * from './models/Store'
 export type * from './models/Billboard'
 export type * from './models/Category'
+export type * from './models/Size'
 export type * from './commonInputTypes'

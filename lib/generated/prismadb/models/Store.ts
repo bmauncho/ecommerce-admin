@@ -184,6 +184,7 @@ export type StoreWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Store"> | Date | string
   billboards?: Prisma.BillboardListRelationFilter
   categories?: Prisma.CategoryListRelationFilter
+  sizes?: Prisma.SizeListRelationFilter
 }
 
 export type StoreOrderByWithRelationInput = {
@@ -194,6 +195,7 @@ export type StoreOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   billboards?: Prisma.BillboardOrderByRelationAggregateInput
   categories?: Prisma.CategoryOrderByRelationAggregateInput
+  sizes?: Prisma.SizeOrderByRelationAggregateInput
 }
 
 export type StoreWhereUniqueInput = Prisma.AtLeast<{
@@ -207,6 +209,7 @@ export type StoreWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Store"> | Date | string
   billboards?: Prisma.BillboardListRelationFilter
   categories?: Prisma.CategoryListRelationFilter
+  sizes?: Prisma.SizeListRelationFilter
 }, "id">
 
 export type StoreOrderByWithAggregationInput = {
@@ -239,6 +242,7 @@ export type StoreCreateInput = {
   updatedAt?: Date | string
   billboards?: Prisma.BillboardCreateNestedManyWithoutStoreInput
   categories?: Prisma.CategoryCreateNestedManyWithoutStoreInput
+  sizes?: Prisma.SizeCreateNestedManyWithoutStoreInput
 }
 
 export type StoreUncheckedCreateInput = {
@@ -249,6 +253,7 @@ export type StoreUncheckedCreateInput = {
   updatedAt?: Date | string
   billboards?: Prisma.BillboardUncheckedCreateNestedManyWithoutStoreInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutStoreInput
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutStoreInput
 }
 
 export type StoreUpdateInput = {
@@ -259,6 +264,7 @@ export type StoreUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   billboards?: Prisma.BillboardUpdateManyWithoutStoreNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutStoreNestedInput
+  sizes?: Prisma.SizeUpdateManyWithoutStoreNestedInput
 }
 
 export type StoreUncheckedUpdateInput = {
@@ -269,6 +275,7 @@ export type StoreUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   billboards?: Prisma.BillboardUncheckedUpdateManyWithoutStoreNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutStoreNestedInput
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutStoreNestedInput
 }
 
 export type StoreCreateManyInput = {
@@ -360,6 +367,20 @@ export type StoreUpdateOneRequiredWithoutCategoriesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StoreUpdateToOneWithWhereWithoutCategoriesInput, Prisma.StoreUpdateWithoutCategoriesInput>, Prisma.StoreUncheckedUpdateWithoutCategoriesInput>
 }
 
+export type StoreCreateNestedOneWithoutSizesInput = {
+  create?: Prisma.XOR<Prisma.StoreCreateWithoutSizesInput, Prisma.StoreUncheckedCreateWithoutSizesInput>
+  connectOrCreate?: Prisma.StoreCreateOrConnectWithoutSizesInput
+  connect?: Prisma.StoreWhereUniqueInput
+}
+
+export type StoreUpdateOneRequiredWithoutSizesNestedInput = {
+  create?: Prisma.XOR<Prisma.StoreCreateWithoutSizesInput, Prisma.StoreUncheckedCreateWithoutSizesInput>
+  connectOrCreate?: Prisma.StoreCreateOrConnectWithoutSizesInput
+  upsert?: Prisma.StoreUpsertWithoutSizesInput
+  connect?: Prisma.StoreWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StoreUpdateToOneWithWhereWithoutSizesInput, Prisma.StoreUpdateWithoutSizesInput>, Prisma.StoreUncheckedUpdateWithoutSizesInput>
+}
+
 export type StoreCreateWithoutBillboardsInput = {
   id?: string
   name: string
@@ -367,6 +388,7 @@ export type StoreCreateWithoutBillboardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   categories?: Prisma.CategoryCreateNestedManyWithoutStoreInput
+  sizes?: Prisma.SizeCreateNestedManyWithoutStoreInput
 }
 
 export type StoreUncheckedCreateWithoutBillboardsInput = {
@@ -376,6 +398,7 @@ export type StoreUncheckedCreateWithoutBillboardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutStoreInput
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutStoreInput
 }
 
 export type StoreCreateOrConnectWithoutBillboardsInput = {
@@ -401,6 +424,7 @@ export type StoreUpdateWithoutBillboardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.CategoryUpdateManyWithoutStoreNestedInput
+  sizes?: Prisma.SizeUpdateManyWithoutStoreNestedInput
 }
 
 export type StoreUncheckedUpdateWithoutBillboardsInput = {
@@ -410,6 +434,7 @@ export type StoreUncheckedUpdateWithoutBillboardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutStoreNestedInput
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutStoreNestedInput
 }
 
 export type StoreCreateWithoutCategoriesInput = {
@@ -419,6 +444,7 @@ export type StoreCreateWithoutCategoriesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   billboards?: Prisma.BillboardCreateNestedManyWithoutStoreInput
+  sizes?: Prisma.SizeCreateNestedManyWithoutStoreInput
 }
 
 export type StoreUncheckedCreateWithoutCategoriesInput = {
@@ -428,6 +454,7 @@ export type StoreUncheckedCreateWithoutCategoriesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   billboards?: Prisma.BillboardUncheckedCreateNestedManyWithoutStoreInput
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutStoreInput
 }
 
 export type StoreCreateOrConnectWithoutCategoriesInput = {
@@ -453,6 +480,7 @@ export type StoreUpdateWithoutCategoriesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   billboards?: Prisma.BillboardUpdateManyWithoutStoreNestedInput
+  sizes?: Prisma.SizeUpdateManyWithoutStoreNestedInput
 }
 
 export type StoreUncheckedUpdateWithoutCategoriesInput = {
@@ -462,6 +490,63 @@ export type StoreUncheckedUpdateWithoutCategoriesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   billboards?: Prisma.BillboardUncheckedUpdateManyWithoutStoreNestedInput
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutStoreNestedInput
+}
+
+export type StoreCreateWithoutSizesInput = {
+  id?: string
+  name: string
+  userId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  billboards?: Prisma.BillboardCreateNestedManyWithoutStoreInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutStoreInput
+}
+
+export type StoreUncheckedCreateWithoutSizesInput = {
+  id?: string
+  name: string
+  userId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  billboards?: Prisma.BillboardUncheckedCreateNestedManyWithoutStoreInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutStoreInput
+}
+
+export type StoreCreateOrConnectWithoutSizesInput = {
+  where: Prisma.StoreWhereUniqueInput
+  create: Prisma.XOR<Prisma.StoreCreateWithoutSizesInput, Prisma.StoreUncheckedCreateWithoutSizesInput>
+}
+
+export type StoreUpsertWithoutSizesInput = {
+  update: Prisma.XOR<Prisma.StoreUpdateWithoutSizesInput, Prisma.StoreUncheckedUpdateWithoutSizesInput>
+  create: Prisma.XOR<Prisma.StoreCreateWithoutSizesInput, Prisma.StoreUncheckedCreateWithoutSizesInput>
+  where?: Prisma.StoreWhereInput
+}
+
+export type StoreUpdateToOneWithWhereWithoutSizesInput = {
+  where?: Prisma.StoreWhereInput
+  data: Prisma.XOR<Prisma.StoreUpdateWithoutSizesInput, Prisma.StoreUncheckedUpdateWithoutSizesInput>
+}
+
+export type StoreUpdateWithoutSizesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  billboards?: Prisma.BillboardUpdateManyWithoutStoreNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutStoreNestedInput
+}
+
+export type StoreUncheckedUpdateWithoutSizesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  billboards?: Prisma.BillboardUncheckedUpdateManyWithoutStoreNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutStoreNestedInput
 }
 
 
@@ -472,11 +557,13 @@ export type StoreUncheckedUpdateWithoutCategoriesInput = {
 export type StoreCountOutputType = {
   billboards: number
   categories: number
+  sizes: number
 }
 
 export type StoreCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   billboards?: boolean | StoreCountOutputTypeCountBillboardsArgs
   categories?: boolean | StoreCountOutputTypeCountCategoriesArgs
+  sizes?: boolean | StoreCountOutputTypeCountSizesArgs
 }
 
 /**
@@ -503,6 +590,13 @@ export type StoreCountOutputTypeCountCategoriesArgs<ExtArgs extends runtime.Type
   where?: Prisma.CategoryWhereInput
 }
 
+/**
+ * StoreCountOutputType without action
+ */
+export type StoreCountOutputTypeCountSizesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SizeWhereInput
+}
+
 
 export type StoreSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -512,6 +606,7 @@ export type StoreSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   updatedAt?: boolean
   billboards?: boolean | Prisma.Store$billboardsArgs<ExtArgs>
   categories?: boolean | Prisma.Store$categoriesArgs<ExtArgs>
+  sizes?: boolean | Prisma.Store$sizesArgs<ExtArgs>
   _count?: boolean | Prisma.StoreCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["store"]>
 
@@ -543,6 +638,7 @@ export type StoreOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type StoreInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   billboards?: boolean | Prisma.Store$billboardsArgs<ExtArgs>
   categories?: boolean | Prisma.Store$categoriesArgs<ExtArgs>
+  sizes?: boolean | Prisma.Store$sizesArgs<ExtArgs>
   _count?: boolean | Prisma.StoreCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StoreIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -553,6 +649,7 @@ export type $StorePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     billboards: Prisma.$BillboardPayload<ExtArgs>[]
     categories: Prisma.$CategoryPayload<ExtArgs>[]
+    sizes: Prisma.$SizePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -956,6 +1053,7 @@ export interface Prisma__StoreClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   billboards<T extends Prisma.Store$billboardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Store$billboardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillboardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   categories<T extends Prisma.Store$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Store$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sizes<T extends Prisma.Store$sizesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Store$sizesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SizePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1428,6 +1526,30 @@ export type Store$categoriesArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.CategoryScalarFieldEnum | Prisma.CategoryScalarFieldEnum[]
+}
+
+/**
+ * Store.sizes
+ */
+export type Store$sizesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Size
+   */
+  select?: Prisma.SizeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Size
+   */
+  omit?: Prisma.SizeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SizeInclude<ExtArgs> | null
+  where?: Prisma.SizeWhereInput
+  orderBy?: Prisma.SizeOrderByWithRelationInput | Prisma.SizeOrderByWithRelationInput[]
+  cursor?: Prisma.SizeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SizeScalarFieldEnum | Prisma.SizeScalarFieldEnum[]
 }
 
 /**
