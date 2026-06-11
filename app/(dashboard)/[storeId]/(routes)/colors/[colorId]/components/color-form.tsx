@@ -19,32 +19,34 @@ import {
 import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { Size } from "@/lib/generated/prismadb/client";
+import { Color } from "@/lib/generated/prismadb/client";
 
 const formSchema = z.object({
   name: z.string().min(1, "Store name is required"),
-  value: z.string().min(1, "Value is required"),
+  value: z.string().min(4).regex(/^#/, {
+    message: "String must be a valid hex code",
+  }),
 });
 
-type SizeFormValues = z.infer<typeof formSchema>;
+type ColorFormValues = z.infer<typeof formSchema>;
 
-interface SizeFormProps {
-  initialData: Size | null;
+interface ColorFormProps {
+  initialData: Color | null;
 }
 
-export const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
+export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? "Edit size" : "Create size";
-  const description = initialData ? "Edit a size" : "Add a new size";
-  const toastMessage = initialData ? "Size updated." : "Size created.";
+  const title = initialData ? "Edit color" : "Create color";
+  const description = initialData ? "Edit a color" : "Add a new color";
+  const toastMessage = initialData ? "Color updated." : "Color created.";
   const action = initialData ? "Save changes" : "Create";
 
-  const form = useForm<SizeFormValues>({
+  const form = useForm<ColorFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       name: "",
@@ -52,21 +54,21 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
     },
   });
 
-  const onSubmit = async (data: SizeFormValues) => {
+  const onSubmit = async (data: ColorFormValues) => {
     try {
       setLoading(true);
       if (initialData) {
         await axios.patch(
-          `/api/${params.storeId}/sizes/${params.sizeId}`,
+          `/api/${params.storeId}/colors/${params.colorId}`,
           data
         );
       } else {
-        await axios.post(`/api/${params.storeId}/sizes`, data);
+        await axios.post(`/api/${params.storeId}/colors`, data);
       }
 
       router.refresh();
 
-      router.push(`/${params.storeId}/sizes`);
+      router.push(`/${params.storeId}/colors`);
 
       toast.success(toastMessage);
     } catch (error) {
@@ -80,15 +82,15 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
     try {
       setLoading(true);
 
-      await axios.delete(`/api/${params.storeId}/sizes/${params.sizeId}`);
+      await axios.delete(`/api/${params.storeId}/colors/${params.colorId}`);
 
       router.refresh();
 
-      router.push(`/${params.storeId}/sizes`);
+      router.push(`/${params.storeId}/colors`);
 
-      toast.success("Size deleted.");
+      toast.success("Color deleted.");
     } catch (error) {
-      toast.error("Make sure you remove all products using this size.");
+      toast.error("Make sure you remove all products using this color first.");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -133,7 +135,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
                     <Input
                       {...field}
                       disabled={loading}
-                      placeholder="Size name"
+                      placeholder="Color name"
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -150,11 +152,17 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
                 render={({ field, fieldState }) => (
                   <Field>
                     <FieldLabel>Value</FieldLabel>
-                    <Input
-                      {...field}
-                      disabled={loading}
-                      placeholder="Size value"
-                    />
+                    <div className="flex items-center gap-4">
+                      <Input
+                        {...field}
+                        disabled={loading}
+                        placeholder="Color value"
+                      />
+                      <div
+                        className="border p-4 rounded-full size-8"
+                        style={{ backgroundColor: field.value }}
+                      />
+                    </div>
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
                     )}
