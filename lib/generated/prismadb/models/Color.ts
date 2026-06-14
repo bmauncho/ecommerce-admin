@@ -191,6 +191,7 @@ export type ColorWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Color"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Color"> | Date | string
   store?: Prisma.XOR<Prisma.StoreScalarRelationFilter, Prisma.StoreWhereInput>
+  product?: Prisma.ProductListRelationFilter
 }
 
 export type ColorOrderByWithRelationInput = {
@@ -201,6 +202,7 @@ export type ColorOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   store?: Prisma.StoreOrderByWithRelationInput
+  product?: Prisma.ProductOrderByRelationAggregateInput
 }
 
 export type ColorWhereUniqueInput = Prisma.AtLeast<{
@@ -214,6 +216,7 @@ export type ColorWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Color"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Color"> | Date | string
   store?: Prisma.XOR<Prisma.StoreScalarRelationFilter, Prisma.StoreWhereInput>
+  product?: Prisma.ProductListRelationFilter
 }, "id">
 
 export type ColorOrderByWithAggregationInput = {
@@ -247,6 +250,7 @@ export type ColorCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   store: Prisma.StoreCreateNestedOneWithoutColorsInput
+  product?: Prisma.ProductCreateNestedManyWithoutColorInput
 }
 
 export type ColorUncheckedCreateInput = {
@@ -256,6 +260,7 @@ export type ColorUncheckedCreateInput = {
   value: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  product?: Prisma.ProductUncheckedCreateNestedManyWithoutColorInput
 }
 
 export type ColorUpdateInput = {
@@ -265,6 +270,7 @@ export type ColorUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   store?: Prisma.StoreUpdateOneRequiredWithoutColorsNestedInput
+  product?: Prisma.ProductUpdateManyWithoutColorNestedInput
 }
 
 export type ColorUncheckedUpdateInput = {
@@ -274,6 +280,7 @@ export type ColorUncheckedUpdateInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product?: Prisma.ProductUncheckedUpdateManyWithoutColorNestedInput
 }
 
 export type ColorCreateManyInput = {
@@ -339,6 +346,11 @@ export type ColorMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type ColorScalarRelationFilter = {
+  is?: Prisma.ColorWhereInput
+  isNot?: Prisma.ColorWhereInput
+}
+
 export type ColorCreateNestedManyWithoutStoreInput = {
   create?: Prisma.XOR<Prisma.ColorCreateWithoutStoreInput, Prisma.ColorUncheckedCreateWithoutStoreInput> | Prisma.ColorCreateWithoutStoreInput[] | Prisma.ColorUncheckedCreateWithoutStoreInput[]
   connectOrCreate?: Prisma.ColorCreateOrConnectWithoutStoreInput | Prisma.ColorCreateOrConnectWithoutStoreInput[]
@@ -381,12 +393,27 @@ export type ColorUncheckedUpdateManyWithoutStoreNestedInput = {
   deleteMany?: Prisma.ColorScalarWhereInput | Prisma.ColorScalarWhereInput[]
 }
 
+export type ColorCreateNestedOneWithoutProductInput = {
+  create?: Prisma.XOR<Prisma.ColorCreateWithoutProductInput, Prisma.ColorUncheckedCreateWithoutProductInput>
+  connectOrCreate?: Prisma.ColorCreateOrConnectWithoutProductInput
+  connect?: Prisma.ColorWhereUniqueInput
+}
+
+export type ColorUpdateOneRequiredWithoutProductNestedInput = {
+  create?: Prisma.XOR<Prisma.ColorCreateWithoutProductInput, Prisma.ColorUncheckedCreateWithoutProductInput>
+  connectOrCreate?: Prisma.ColorCreateOrConnectWithoutProductInput
+  upsert?: Prisma.ColorUpsertWithoutProductInput
+  connect?: Prisma.ColorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ColorUpdateToOneWithWhereWithoutProductInput, Prisma.ColorUpdateWithoutProductInput>, Prisma.ColorUncheckedUpdateWithoutProductInput>
+}
+
 export type ColorCreateWithoutStoreInput = {
   id?: string
   name: string
   value: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  product?: Prisma.ProductCreateNestedManyWithoutColorInput
 }
 
 export type ColorUncheckedCreateWithoutStoreInput = {
@@ -395,6 +422,7 @@ export type ColorUncheckedCreateWithoutStoreInput = {
   value: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  product?: Prisma.ProductUncheckedCreateNestedManyWithoutColorInput
 }
 
 export type ColorCreateOrConnectWithoutStoreInput = {
@@ -435,6 +463,58 @@ export type ColorScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Color"> | Date | string
 }
 
+export type ColorCreateWithoutProductInput = {
+  id?: string
+  name: string
+  value: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  store: Prisma.StoreCreateNestedOneWithoutColorsInput
+}
+
+export type ColorUncheckedCreateWithoutProductInput = {
+  id?: string
+  storeId: string
+  name: string
+  value: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ColorCreateOrConnectWithoutProductInput = {
+  where: Prisma.ColorWhereUniqueInput
+  create: Prisma.XOR<Prisma.ColorCreateWithoutProductInput, Prisma.ColorUncheckedCreateWithoutProductInput>
+}
+
+export type ColorUpsertWithoutProductInput = {
+  update: Prisma.XOR<Prisma.ColorUpdateWithoutProductInput, Prisma.ColorUncheckedUpdateWithoutProductInput>
+  create: Prisma.XOR<Prisma.ColorCreateWithoutProductInput, Prisma.ColorUncheckedCreateWithoutProductInput>
+  where?: Prisma.ColorWhereInput
+}
+
+export type ColorUpdateToOneWithWhereWithoutProductInput = {
+  where?: Prisma.ColorWhereInput
+  data: Prisma.XOR<Prisma.ColorUpdateWithoutProductInput, Prisma.ColorUncheckedUpdateWithoutProductInput>
+}
+
+export type ColorUpdateWithoutProductInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  value?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  store?: Prisma.StoreUpdateOneRequiredWithoutColorsNestedInput
+}
+
+export type ColorUncheckedUpdateWithoutProductInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  storeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  value?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type ColorCreateManyStoreInput = {
   id?: string
   name: string
@@ -449,6 +529,7 @@ export type ColorUpdateWithoutStoreInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product?: Prisma.ProductUpdateManyWithoutColorNestedInput
 }
 
 export type ColorUncheckedUpdateWithoutStoreInput = {
@@ -457,6 +538,7 @@ export type ColorUncheckedUpdateWithoutStoreInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product?: Prisma.ProductUncheckedUpdateManyWithoutColorNestedInput
 }
 
 export type ColorUncheckedUpdateManyWithoutStoreInput = {
@@ -468,6 +550,35 @@ export type ColorUncheckedUpdateManyWithoutStoreInput = {
 }
 
 
+/**
+ * Count Type ColorCountOutputType
+ */
+
+export type ColorCountOutputType = {
+  product: number
+}
+
+export type ColorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  product?: boolean | ColorCountOutputTypeCountProductArgs
+}
+
+/**
+ * ColorCountOutputType without action
+ */
+export type ColorCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ColorCountOutputType
+   */
+  select?: Prisma.ColorCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ColorCountOutputType without action
+ */
+export type ColorCountOutputTypeCountProductArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductWhereInput
+}
+
 
 export type ColorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -477,6 +588,8 @@ export type ColorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdAt?: boolean
   updatedAt?: boolean
   store?: boolean | Prisma.StoreDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.Color$productArgs<ExtArgs>
+  _count?: boolean | Prisma.ColorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["color"]>
 
 export type ColorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -511,6 +624,8 @@ export type ColorSelectScalar = {
 export type ColorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "storeId" | "name" | "value" | "createdAt" | "updatedAt", ExtArgs["result"]["color"]>
 export type ColorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   store?: boolean | Prisma.StoreDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.Color$productArgs<ExtArgs>
+  _count?: boolean | Prisma.ColorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ColorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   store?: boolean | Prisma.StoreDefaultArgs<ExtArgs>
@@ -523,6 +638,7 @@ export type $ColorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Color"
   objects: {
     store: Prisma.$StorePayload<ExtArgs>
+    product: Prisma.$ProductPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -926,6 +1042,7 @@ readonly fields: ColorFieldRefs;
 export interface Prisma__ColorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   store<T extends Prisma.StoreDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StoreDefaultArgs<ExtArgs>>): Prisma.Prisma__StoreClient<runtime.Types.Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  product<T extends Prisma.Color$productArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Color$productArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1359,6 +1476,30 @@ export type ColorDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Colors to delete.
    */
   limit?: number
+}
+
+/**
+ * Color.product
+ */
+export type Color$productArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Product
+   */
+  select?: Prisma.ProductSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Product
+   */
+  omit?: Prisma.ProductOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductInclude<ExtArgs> | null
+  where?: Prisma.ProductWhereInput
+  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
+  cursor?: Prisma.ProductWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
 }
 
 /**

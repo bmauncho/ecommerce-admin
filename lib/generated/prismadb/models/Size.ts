@@ -191,6 +191,7 @@ export type SizeWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Size"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Size"> | Date | string
   store?: Prisma.XOR<Prisma.StoreScalarRelationFilter, Prisma.StoreWhereInput>
+  product?: Prisma.ProductListRelationFilter
 }
 
 export type SizeOrderByWithRelationInput = {
@@ -201,6 +202,7 @@ export type SizeOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   store?: Prisma.StoreOrderByWithRelationInput
+  product?: Prisma.ProductOrderByRelationAggregateInput
 }
 
 export type SizeWhereUniqueInput = Prisma.AtLeast<{
@@ -214,6 +216,7 @@ export type SizeWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Size"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Size"> | Date | string
   store?: Prisma.XOR<Prisma.StoreScalarRelationFilter, Prisma.StoreWhereInput>
+  product?: Prisma.ProductListRelationFilter
 }, "id">
 
 export type SizeOrderByWithAggregationInput = {
@@ -247,6 +250,7 @@ export type SizeCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   store: Prisma.StoreCreateNestedOneWithoutSizesInput
+  product?: Prisma.ProductCreateNestedManyWithoutSizeInput
 }
 
 export type SizeUncheckedCreateInput = {
@@ -256,6 +260,7 @@ export type SizeUncheckedCreateInput = {
   value: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  product?: Prisma.ProductUncheckedCreateNestedManyWithoutSizeInput
 }
 
 export type SizeUpdateInput = {
@@ -265,6 +270,7 @@ export type SizeUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   store?: Prisma.StoreUpdateOneRequiredWithoutSizesNestedInput
+  product?: Prisma.ProductUpdateManyWithoutSizeNestedInput
 }
 
 export type SizeUncheckedUpdateInput = {
@@ -274,6 +280,7 @@ export type SizeUncheckedUpdateInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product?: Prisma.ProductUncheckedUpdateManyWithoutSizeNestedInput
 }
 
 export type SizeCreateManyInput = {
@@ -339,6 +346,11 @@ export type SizeMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type SizeScalarRelationFilter = {
+  is?: Prisma.SizeWhereInput
+  isNot?: Prisma.SizeWhereInput
+}
+
 export type SizeCreateNestedManyWithoutStoreInput = {
   create?: Prisma.XOR<Prisma.SizeCreateWithoutStoreInput, Prisma.SizeUncheckedCreateWithoutStoreInput> | Prisma.SizeCreateWithoutStoreInput[] | Prisma.SizeUncheckedCreateWithoutStoreInput[]
   connectOrCreate?: Prisma.SizeCreateOrConnectWithoutStoreInput | Prisma.SizeCreateOrConnectWithoutStoreInput[]
@@ -381,12 +393,27 @@ export type SizeUncheckedUpdateManyWithoutStoreNestedInput = {
   deleteMany?: Prisma.SizeScalarWhereInput | Prisma.SizeScalarWhereInput[]
 }
 
+export type SizeCreateNestedOneWithoutProductInput = {
+  create?: Prisma.XOR<Prisma.SizeCreateWithoutProductInput, Prisma.SizeUncheckedCreateWithoutProductInput>
+  connectOrCreate?: Prisma.SizeCreateOrConnectWithoutProductInput
+  connect?: Prisma.SizeWhereUniqueInput
+}
+
+export type SizeUpdateOneRequiredWithoutProductNestedInput = {
+  create?: Prisma.XOR<Prisma.SizeCreateWithoutProductInput, Prisma.SizeUncheckedCreateWithoutProductInput>
+  connectOrCreate?: Prisma.SizeCreateOrConnectWithoutProductInput
+  upsert?: Prisma.SizeUpsertWithoutProductInput
+  connect?: Prisma.SizeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SizeUpdateToOneWithWhereWithoutProductInput, Prisma.SizeUpdateWithoutProductInput>, Prisma.SizeUncheckedUpdateWithoutProductInput>
+}
+
 export type SizeCreateWithoutStoreInput = {
   id?: string
   name: string
   value: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  product?: Prisma.ProductCreateNestedManyWithoutSizeInput
 }
 
 export type SizeUncheckedCreateWithoutStoreInput = {
@@ -395,6 +422,7 @@ export type SizeUncheckedCreateWithoutStoreInput = {
   value: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  product?: Prisma.ProductUncheckedCreateNestedManyWithoutSizeInput
 }
 
 export type SizeCreateOrConnectWithoutStoreInput = {
@@ -435,6 +463,58 @@ export type SizeScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Size"> | Date | string
 }
 
+export type SizeCreateWithoutProductInput = {
+  id?: string
+  name: string
+  value: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  store: Prisma.StoreCreateNestedOneWithoutSizesInput
+}
+
+export type SizeUncheckedCreateWithoutProductInput = {
+  id?: string
+  storeId: string
+  name: string
+  value: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SizeCreateOrConnectWithoutProductInput = {
+  where: Prisma.SizeWhereUniqueInput
+  create: Prisma.XOR<Prisma.SizeCreateWithoutProductInput, Prisma.SizeUncheckedCreateWithoutProductInput>
+}
+
+export type SizeUpsertWithoutProductInput = {
+  update: Prisma.XOR<Prisma.SizeUpdateWithoutProductInput, Prisma.SizeUncheckedUpdateWithoutProductInput>
+  create: Prisma.XOR<Prisma.SizeCreateWithoutProductInput, Prisma.SizeUncheckedCreateWithoutProductInput>
+  where?: Prisma.SizeWhereInput
+}
+
+export type SizeUpdateToOneWithWhereWithoutProductInput = {
+  where?: Prisma.SizeWhereInput
+  data: Prisma.XOR<Prisma.SizeUpdateWithoutProductInput, Prisma.SizeUncheckedUpdateWithoutProductInput>
+}
+
+export type SizeUpdateWithoutProductInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  value?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  store?: Prisma.StoreUpdateOneRequiredWithoutSizesNestedInput
+}
+
+export type SizeUncheckedUpdateWithoutProductInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  storeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  value?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type SizeCreateManyStoreInput = {
   id?: string
   name: string
@@ -449,6 +529,7 @@ export type SizeUpdateWithoutStoreInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product?: Prisma.ProductUpdateManyWithoutSizeNestedInput
 }
 
 export type SizeUncheckedUpdateWithoutStoreInput = {
@@ -457,6 +538,7 @@ export type SizeUncheckedUpdateWithoutStoreInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product?: Prisma.ProductUncheckedUpdateManyWithoutSizeNestedInput
 }
 
 export type SizeUncheckedUpdateManyWithoutStoreInput = {
@@ -468,6 +550,35 @@ export type SizeUncheckedUpdateManyWithoutStoreInput = {
 }
 
 
+/**
+ * Count Type SizeCountOutputType
+ */
+
+export type SizeCountOutputType = {
+  product: number
+}
+
+export type SizeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  product?: boolean | SizeCountOutputTypeCountProductArgs
+}
+
+/**
+ * SizeCountOutputType without action
+ */
+export type SizeCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SizeCountOutputType
+   */
+  select?: Prisma.SizeCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SizeCountOutputType without action
+ */
+export type SizeCountOutputTypeCountProductArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductWhereInput
+}
+
 
 export type SizeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -477,6 +588,8 @@ export type SizeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   store?: boolean | Prisma.StoreDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.Size$productArgs<ExtArgs>
+  _count?: boolean | Prisma.SizeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["size"]>
 
 export type SizeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -511,6 +624,8 @@ export type SizeSelectScalar = {
 export type SizeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "storeId" | "name" | "value" | "createdAt" | "updatedAt", ExtArgs["result"]["size"]>
 export type SizeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   store?: boolean | Prisma.StoreDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.Size$productArgs<ExtArgs>
+  _count?: boolean | Prisma.SizeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SizeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   store?: boolean | Prisma.StoreDefaultArgs<ExtArgs>
@@ -523,6 +638,7 @@ export type $SizePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "Size"
   objects: {
     store: Prisma.$StorePayload<ExtArgs>
+    product: Prisma.$ProductPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -926,6 +1042,7 @@ readonly fields: SizeFieldRefs;
 export interface Prisma__SizeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   store<T extends Prisma.StoreDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StoreDefaultArgs<ExtArgs>>): Prisma.Prisma__StoreClient<runtime.Types.Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  product<T extends Prisma.Size$productArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Size$productArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1359,6 +1476,30 @@ export type SizeDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Sizes to delete.
    */
   limit?: number
+}
+
+/**
+ * Size.product
+ */
+export type Size$productArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Product
+   */
+  select?: Prisma.ProductSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Product
+   */
+  omit?: Prisma.ProductOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductInclude<ExtArgs> | null
+  where?: Prisma.ProductWhereInput
+  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
+  cursor?: Prisma.ProductWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
 }
 
 /**
