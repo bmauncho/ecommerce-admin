@@ -4,7 +4,7 @@ import prismadb from "@/lib/prismadb";
 
 export async function GET(
   req: Request,
-  { params }: { params: { billboardId: string } }
+  { params }: { params: Promise<{ storeId: string; billboardId: string }> }
 ) {
   try {
     const { billboardId } = await params;
@@ -119,4 +119,3 @@ export async function DELETE(
     return new NextResponse("Internal error", { status: 500 });
   }
 }
-
