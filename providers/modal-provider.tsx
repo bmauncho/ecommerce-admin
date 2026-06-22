@@ -13,7 +13,6 @@ export const ModalProvider = () => {
   }, []);
 
   if (!isMounted) return null;
-  // Prevent hydration mismatch
   return (
     <>
       <StoreModal />
