@@ -7,7 +7,7 @@ import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { Store } from "@/lib/generated/prisma/client";
+import { Store } from "@/lib/generated/prismadb";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";

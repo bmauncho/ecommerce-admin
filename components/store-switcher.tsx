@@ -6,7 +6,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useStoreModal } from "@/hooks/use-store-modal";
-import { Store } from "@/lib/generated/prisma/client";
+import { Store } from "@/lib/generated/prismadb";
 import { Button } from "@/components/ui/button";
 import { useParams, useRouter } from "next/navigation";
 import {
