@@ -7,12 +7,12 @@ export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    // Wrap in a timeout to avoid synchronous setState in effect
+    const timeout = setTimeout(() => setIsMounted(true), 0);
+    return () => clearTimeout(timeout);
   }, []);
 
-  if (!isMounted) {
-    return null;
-  }
+  if (!isMounted) return null;
 
   return (
     <>
