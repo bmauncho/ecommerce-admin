@@ -19,7 +19,7 @@ export const POST = async (
   { params }: { params: { storeId: string } }
 ) => {
   const { storeId } = await params;
-  const { productIds, email } = await req.json();
+  const { productIds, email, phone, address } = await req.json();
 
   if (!productIds || productIds.length === 0) {
     return new NextResponse("Product IDs are required", { status: 400 });
@@ -68,6 +68,8 @@ export const POST = async (
       callback_url: `${process.env.FRONTEND_STORE_URL}/cart?success=1`,
       metadata: {
         orderId: order.id,
+        phone: phone,
+        address: address,
         cancel_action: `${process.env.FRONTEND_STORE_URL}/cart?canceled=1`,
       },
     }),

@@ -16,6 +16,19 @@ export const columns: ColumnDef<OrderColumn>[] = [
   {
     accessorKey: "products",
     header: "Products",
+    cell: ({ row }) => {
+      const raw = row.getValue("products") as string;
+      const products = raw ? raw.split(", ") : [];
+      return (
+        <ul className="list-disc list-inside space-y-1">
+          {products.map((product, index) => (
+            <li key={index} className="text-sm">
+              {product}
+            </li>
+          ))}
+        </ul>
+      );
+    },
   },
   {
     accessorKey: "phone",
