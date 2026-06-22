@@ -1,6 +1,6 @@
 import { getDailyGraphRevenue } from "@/actions/get-daily-graph-revenue";
 import { getMonthlyGraphRevenue } from "@/actions/get-monthly-graph-revenue";
-import { getSalesCount } from "@/actions/get-sales-count";
+import { getDailySalesCount, getSalesCount } from "@/actions/get-sales-count";
 import { getStockCount } from "@/actions/get-stock-count";
 import { getDailyRevenue, getTotalRevenue } from "@/actions/get-total-revenue";
 import { Overview } from "@/components/overview";
@@ -19,6 +19,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
   const totalRevenue = await getTotalRevenue(storeId);
   const dailyRevenue = await getDailyRevenue(storeId);
   const salesCount = await getSalesCount(storeId);
+  const dailySalesCount = await getDailySalesCount(storeId);
   const stockCount = await getStockCount(storeId);
   const monthlyGraphRevenue = await getMonthlyGraphRevenue(storeId);
   const dailyGraphRevenue = await getDailyGraphRevenue(storeId);
@@ -57,11 +58,22 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Sales</CardTitle>
+              <CardTitle className="text-sm font-medium">Total Sales</CardTitle>
               <CreditCard className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{`+${salesCount}`}</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Total Sales Today
+              </CardTitle>
+              <CreditCard className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{`+${dailySalesCount}`}</div>
             </CardContent>
           </Card>
           <Card>
