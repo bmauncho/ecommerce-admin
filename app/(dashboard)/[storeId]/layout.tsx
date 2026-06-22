@@ -8,7 +8,7 @@ export default async function DashboardLayOut({
   params,
 }: {
   children: React.ReactNode;
-  params: { storeId: string };
+  params: Promise<{ storeId: string }>;
 }) {
   const { userId } = await auth.protect();
   const { storeId } = await params;

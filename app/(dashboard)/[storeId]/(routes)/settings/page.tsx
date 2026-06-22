@@ -3,9 +3,9 @@ import { auth } from "@clerk/nextjs/server";
 import { SettingsForm } from "./components/settings-form";
 
 interface SettingsPageProps {
-  params: {
+  params: Promise<{
     storeId: string;
-  };
+  }>;
 }
 
 const SettingsPage: React.FC<SettingsPageProps> = async ({ params }) => {
